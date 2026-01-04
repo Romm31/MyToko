@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Product } from "@/types/database";
 
@@ -19,7 +19,7 @@ export function ProductCard({ product }: ProductCardProps) {
 
   return (
     <Link href={`/product/${product.id}`} className="block h-full">
-      <Card className="group h-full flex flex-col overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-primary/10 hover:-translate-y-1 border-border/50">
+      <Card className="group h-full overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-primary/10 hover:-translate-y-1 border-border/50">
         <div className="relative aspect-square overflow-hidden bg-muted">
           {product.image_url ? (
             <Image
@@ -49,19 +49,17 @@ export function ProductCard({ product }: ProductCardProps) {
             </div>
           )}
         </div>
-        <CardContent className="p-4 flex-1">
+        <CardContent className="p-4">
           <h3 className="font-semibold text-lg line-clamp-1 group-hover:text-primary transition-colors">
             {product.name}
           </h3>
-          <p className="text-sm text-muted-foreground mt-1 h-5">
-            {product.size ? `Ukuran: ${product.size}` : "\u00A0"}
+          <p className="text-sm text-muted-foreground mt-1 line-clamp-1">
+            {product.size ? `Ukuran: ${product.size}` : "—"}
+          </p>
+          <p className="text-lg font-bold text-primary mt-2">
+            {formatPrice(product.price)}
           </p>
         </CardContent>
-        <CardFooter className="p-4 pt-0">
-          <span className="text-lg font-bold text-primary">
-            {formatPrice(product.price)}
-          </span>
-        </CardFooter>
       </Card>
     </Link>
   );
