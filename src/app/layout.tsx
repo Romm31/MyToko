@@ -16,8 +16,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "MyDistro - Katalog Produk",
-  description: "Katalog produk distro terlengkap dengan koleksi terbaru dan terbaik",
+  title: "MyToko - Fashion Distro Terbaik",
+  description: "Destinasi fashion streetwear terdepan di Indonesia dengan kualitas premium dan harga terjangkau",
 };
 
 export default function RootLayout({

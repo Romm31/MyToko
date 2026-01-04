@@ -41,7 +41,7 @@ function LoginForm() {
         </div>
         <CardTitle className="text-2xl">Login Admin</CardTitle>
         <CardDescription>
-          Masuk ke dashboard admin MyDistro
+          Masuk ke dashboard admin MyToko
         </CardDescription>
       </CardHeader>
       <CardContent>
