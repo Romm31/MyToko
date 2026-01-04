@@ -58,7 +58,7 @@ export default async function HomePage() {
                 <div className="relative w-72 h-72 rounded-full bg-gradient-to-br from-primary to-secondary p-1">
                   <div className="w-full h-full rounded-full bg-background flex items-center justify-center">
                     <Image
-                      src="/logo.png"
+                      src="/logo.svg"
                       alt="MyToko Logo"
                       width={180}
                       height={180}
@@ -135,7 +135,7 @@ export default async function HomePage() {
               <div className="aspect-square rounded-2xl bg-gradient-to-br from-primary to-secondary p-1">
                 <div className="w-full h-full rounded-2xl bg-background flex items-center justify-center">
                   <Image
-                    src="/logo.png"
+                    src="/logo.svg"
                     alt="MyToko"
                     width={250}
                     height={250}
@@ -277,7 +277,7 @@ export default async function HomePage() {
           <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div>
               <div className="flex items-center gap-2 mb-4">
-                <Image src="/logo.png" alt="MyToko" width={32} height={32} />
+                <Image src="/logo.svg" alt="MyToko" width={32} height={32} />
                 <span className="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
                   MyToko
                 </span>

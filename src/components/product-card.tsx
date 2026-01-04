@@ -18,8 +18,8 @@ export function ProductCard({ product }: ProductCardProps) {
   };
 
   return (
-    <Link href={`/product/${product.id}`}>
-      <Card className="group overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-primary/10 hover:-translate-y-1 border-border/50">
+    <Link href={`/product/${product.id}`} className="block h-full">
+      <Card className="group h-full flex flex-col overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-primary/10 hover:-translate-y-1 border-border/50">
         <div className="relative aspect-square overflow-hidden bg-muted">
           {product.image_url ? (
             <Image
@@ -40,26 +40,27 @@ export function ProductCard({ product }: ProductCardProps) {
               </Badge>
             </div>
           )}
+          {/* Stock badge overlay */}
+          {product.stock > 0 && (
+            <div className="absolute bottom-2 right-2">
+              <Badge className="bg-primary/90 hover:bg-primary text-white text-xs">
+                Stok: {product.stock}
+              </Badge>
+            </div>
+          )}
         </div>
-        <CardContent className="p-4">
+        <CardContent className="p-4 flex-1">
           <h3 className="font-semibold text-lg line-clamp-1 group-hover:text-primary transition-colors">
             {product.name}
           </h3>
-          {product.size && (
-            <p className="text-sm text-muted-foreground mt-1">
-              Ukuran: {product.size}
-            </p>
-          )}
+          <p className="text-sm text-muted-foreground mt-1 h-5">
+            {product.size ? `Ukuran: ${product.size}` : "\u00A0"}
+          </p>
         </CardContent>
-        <CardFooter className="p-4 pt-0 flex items-center justify-between">
+        <CardFooter className="p-4 pt-0">
           <span className="text-lg font-bold text-primary">
             {formatPrice(product.price)}
           </span>
-          {product.stock > 0 && (
-            <Badge variant="secondary" className="bg-accent/20 text-accent-foreground">
-              Stok: {product.stock}
-            </Badge>
-          )}
         </CardFooter>
       </Card>
     </Link>
