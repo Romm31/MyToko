@@ -1,65 +1,67 @@
-import Image from "next/image";
+import { getProducts } from "@/actions/products";
+import { ProductCard } from "@/components/product-card";
 
-export default function Home() {
+export default async function HomePage() {
+  const products = await getProducts();
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <div className="min-h-screen">
+      {/* Hero Section */}
+      <section className="relative overflow-hidden bg-gradient-to-br from-primary/10 via-background to-secondary/10 py-20">
+        <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
+        <div className="container mx-auto max-w-7xl px-4 text-center relative z-10">
+          <h1 className="text-4xl md:text-6xl font-bold mb-6">
+            <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+              MyDistro
+            </span>
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
+            Temukan koleksi produk terbaik dengan kualitas premium dan harga terjangkau
+          </p>
+          <div className="flex justify-center gap-2">
+            <div className="h-1 w-12 rounded-full bg-primary"></div>
+            <div className="h-1 w-12 rounded-full bg-secondary"></div>
+            <div className="h-1 w-12 rounded-full bg-accent"></div>
+          </div>
+        </div>
+      </section>
+
+      {/* Products Grid */}
+      <section className="py-16">
+        <div className="container mx-auto max-w-7xl px-4">
+          <div className="mb-10">
+            <h2 className="text-3xl font-bold mb-2">Katalog Produk</h2>
+            <p className="text-muted-foreground">
+              Jelajahi {products.length} produk terbaik kami
+            </p>
+          </div>
+
+          {products.length > 0 ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+              {products.map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))}
+            </div>
+          ) : (
+            <div className="flex flex-col items-center justify-center py-20 text-center">
+              <div className="text-6xl mb-4">📦</div>
+              <h3 className="text-xl font-semibold mb-2">Belum Ada Produk</h3>
+              <p className="text-muted-foreground max-w-md">
+                Produk akan segera tersedia. Silakan kunjungi kembali nanti atau hubungi admin untuk informasi lebih lanjut.
+              </p>
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="border-t border-border bg-muted/30 py-10">
+        <div className="container mx-auto max-w-7xl px-4 text-center">
+          <p className="text-muted-foreground">
+            © 2024 MyDistro. Semua hak dilindungi.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+      </footer>
     </div>
   );
 }
