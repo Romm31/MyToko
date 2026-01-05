@@ -39,7 +39,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
         <div className="grid md:grid-cols-2 gap-10">
           {/* Product Image */}
-          <Card className="overflow-hidden border-border/50">
+          <Card className="overflow-hidden border-border/50 !p-0 !gap-0">
             <div className="relative aspect-square bg-muted">
               {product.image_url ? (
                 <Image
